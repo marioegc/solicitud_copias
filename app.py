@@ -93,7 +93,7 @@ def encolar(id):
     connection = get_db_connection()
     try:
         with connection.cursor() as cursor:
-            # Actualiza el campo estado a 1 para la tarea con el id especificado
+            # Actualiza el campo estado a 0 para la tarea con el id especificado
             sql = "UPDATE tareas SET estado = 0 WHERE id = %s"
             cursor.execute(sql, (id,))
         connection.commit()
