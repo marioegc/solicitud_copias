@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Lista de Tareas</h2>
+        <!-- Formulario de búsqueda -->
+        <form action="/buscar" method="get" class="mb-3">
+            <div class="form-group">
+                <label for="id_justicia_360">Buscar por ID Justicia 360:</label>
+                <input type="text" class="form-control" id="id_justicia_360" name="id_justicia_360" placeholder="Ingrese ID Justicia 360">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+        <!-- Botón para agregar nueva tarea -->
+        <a href="/agregar" class="btn btn-primary mb-3">Agregar Tarea</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID Trabajo</th>
+                    <th>ID Justicia 360</th>
+                    <th>Texto</th>
+                    <th>Estado</th>
+                    <th>Archivo Copia</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tarea in tareas %}
+                <tr>
+                    <td>{{ tarea.id }}</td>
+                    <td>{{ tarea.id_audiencia_j360 }}</td>
+                    <td>{{ tarea.texto }}</td>
+                    <td>{{ tarea.estado }}</td>
+                    <td>
+                        {% if tarea.archivo_copia %}
+                        {{ tarea.archivo_copia }}
+                        <a href="/descargar/{{ tarea.archivo_copia }}" class="btn btn-success btn-sm">Descargar</a>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="/eliminar/{{ tarea.id }}" class="btn btn-danger btn-sm">Eliminar</a>
+                        <a href="/encolar/{{ tarea.id }}" class="btn btn-secondary btn-sm">Encolar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item {% if pagina <= 1 %}disabled{% endif %}">
+              <a class="page-link" href="{{ url_for('tareas', pagina=pagina-1) }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <!-- Lógica de paginación aquí. Se omite por brevedad. -->
+            <li class="page-item {% if not tareas %}disabled{% endif %}">
+              <a class="page-link" href="{{ url_for('tareas', pagina=pagina+1) }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+</body>
+</html>

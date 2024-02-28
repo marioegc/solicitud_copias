@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Tarea</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Agregar Nueva Tarea</h2>
+    <form action="/insertar" method="post">
+        <div class="form-group">
+            <label for="id_audiencia_j360">ID Justicia 360:</label>
+            <input type="text" class="form-control" id="id_audiencia_j360" name="id_audiencia_j360" required>
+        </div>
+        <div class="form-group">
+            <label for="texto">Texto:</label>
+            <textarea class="form-control" id="texto" name="texto" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+</div>
+</body>
+</html>
