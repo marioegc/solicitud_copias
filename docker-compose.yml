@@ -11,4 +11,5 @@ services:
       - DATABASE_USER=cola
       - DATABASE_PASSWORD=sabritas
       - DATABASE_DB=cola
-
+    volumes:
+      - /copias:/app/copias
