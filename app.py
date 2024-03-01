@@ -1,17 +1,23 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 import pymysql.cursors
 from datetime import datetime
-
+import os
 
 app = Flask(__name__)
 
 
 def get_db_connection():
-    return pymysql.connect(host='192.168.1.30',
-                           user='cola',
-                           password='sabritas',
-                           db='cola',
+    return pymysql.connect(host=os.getenv('DATABASE_HOST'),
+                           user=os.getenv('DATABASE_USER'),
+                           password=os.getenv('DATABASE_PASSWORD'),
+                           db=os.getenv('DATABASE_DB'),
                            cursorclass=pymysql.cursors.DictCursor)
+#def get_db_connection():
+#    return pymysql.connect(host='192.168.1.30',
+#                           user='cola',
+#                           password='sabritas',
+#                           db='cola',
+#                           cursorclass=pymysql.cursors.DictCursor)
 
 
 
