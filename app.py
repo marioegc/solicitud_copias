@@ -64,6 +64,7 @@ def agregar():
 def insertar():
     id_audiencia_j360 = request.form['id_audiencia_j360']
     texto = request.form['texto']
+    int(folder = request.form['folder'])
     fecha_encolamiento = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     archivo = f"A_{id_audiencia_j360}.mp4"
 
