@@ -64,6 +64,7 @@ def agregar():
 def insertar():
     id_audiencia_j360 = request.form['id_audiencia_j360']
     texto = request.form['texto']
+    folder = request.form['folder']
     fecha_encolamiento = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     archivo = f"A_{id_audiencia_j360}.mp4"
 
@@ -71,7 +72,7 @@ def insertar():
     try:
         with connection.cursor() as cursor:
             # Incluye el campo folder con un valor de 200 en la consulta
-            sql = "INSERT INTO tareas (fecha_encolamiento, archivo, texto, id_audiencia_j360, folder, copia) VALUES (%s, %s, %s, %s, 200,1)"
+            sql = "INSERT INTO tareas (fecha_encolamiento, archivo, texto, id_audiencia_j360, folder, copia) VALUES (%s, %s, %s, %s, %s,1)"
             cursor.execute(sql, (fecha_encolamiento, archivo, texto, id_audiencia_j360))
         connection.commit()
     finally:
