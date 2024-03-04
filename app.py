@@ -66,19 +66,19 @@ def insertar():
     texto = request.form['texto']
     fecha_encolamiento = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     archivo = f"A_{id_audiencia_j360}.mp4"
+    folder = 200  # Asegúrate de ajustar este valor según tus necesidades
+    copia = 1  # Asegúrate de ajustar este valor según tus necesidades
 
     connection = get_db_connection()
     try:
         with connection.cursor() as cursor:
-            # Incluye el campo folder con un valor de 200 en la consulta
-            sql = "INSERT INTO tareas (fecha_encolamiento, archivo, texto, id_audiencia_j360, folder, copia) VALUES (%s, %s, %s, %s, %s,1)"
-            cursor.execute(sql, (fecha_encolamiento, archivo, texto, id_audiencia_j360))
+            sql = "INSERT INTO tareas (fecha_encolamiento, archivo, texto, id_audiencia_j360, folder, copia) VALUES (%s, %s, %s, %s, %s, %s)"
+            cursor.execute(sql, (fecha_encolamiento, archivo, texto, id_audiencia_j360, folder, copia))
         connection.commit()
     finally:
         connection.close()
 
     return redirect(url_for('tareas'))
-
 
 @app.route('/eliminar/<int:id>')
 def eliminar(id):
