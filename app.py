@@ -68,7 +68,7 @@ def insertar():
     fecha_encolamiento = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     archivo = f"A_{id_audiencia_j360}.mp4"
     folder = folder   # Asegúrate de ajustar este valor según tus necesidades
-    copia = "1"  # Asegúrate de ajustar este valor según tus necesidades
+    copia = 1  # Define la variable "copia" y asigna el valor 1
 
     connection = get_db_connection()
     try:
