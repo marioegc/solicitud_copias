@@ -64,10 +64,11 @@ def agregar():
 def insertar():
     id_audiencia_j360 = request.form['id_audiencia_j360']
     texto = request.form['texto']
+    folder = request.form['folder']
     fecha_encolamiento = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     archivo = f"A_{id_audiencia_j360}.mp4"
-    folder = 200  # Asegúrate de ajustar este valor según tus necesidades
-    copia = 1  # Asegúrate de ajustar este valor según tus necesidades
+    folder = folder   # Asegúrate de ajustar este valor según tus necesidades
+    copia = "1"  # Asegúrate de ajustar este valor según tus necesidades
 
     connection = get_db_connection()
     try:
