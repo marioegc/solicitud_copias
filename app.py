@@ -28,7 +28,7 @@ def index_or_first_page():
         with connection.cursor() as cursor:
             # Asume que quieres la primera página de resultados, ajusta según necesidad
             pagina = 1
-            sql = "SELECT id, id_audiencia_j360, texto, estado, archivo_copia FROM tareas WHERE folder = 200 ORDER BY id DESC LIMIT %s, 10"
+            sql = "SELECT id, id_audiencia_j360, texto, estado, archivo_copia FROM tareas WHERE copia = 1 ORDER BY id DESC LIMIT %s, 10"
             cursor.execute(sql, (pagina-1)*10)
             result = cursor.fetchall()
     finally:
@@ -71,7 +71,7 @@ def insertar():
     try:
         with connection.cursor() as cursor:
             # Incluye el campo folder con un valor de 200 en la consulta
-            sql = "INSERT INTO tareas (fecha_encolamiento, archivo, texto, id_audiencia_j360, folder) VALUES (%s, %s, %s, %s, 200)"
+            sql = "INSERT INTO tareas (fecha_encolamiento, archivo, texto, id_audiencia_j360, folder, copia) VALUES (%s, %s, %s, %s, 200,1)"
             cursor.execute(sql, (fecha_encolamiento, archivo, texto, id_audiencia_j360))
         connection.commit()
     finally:
