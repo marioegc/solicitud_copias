@@ -48,7 +48,7 @@ def tareas(pagina=1):
     connection = get_db_connection()
     try:
         with connection.cursor() as cursor:
-            sql = "SELECT id, id_audiencia_j360, texto, estado, archivo_copia FROM tareas WHERE folder = 200 ORDER BY id DESC LIMIT %s OFFSET %s"
+            sql = "SELECT id, id_audiencia_j360, texto, estado, archivo_copia FROM tareas WHERE copia = 1 ORDER BY id DESC LIMIT %s OFFSET %s"
             cursor.execute(sql, (tamanio_pagina, offset))
             result = cursor.fetchall()
     finally:
