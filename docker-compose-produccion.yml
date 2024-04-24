@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  solicitud_de_copias:
+    image: marioegc/solicitud_copias_web:01
+    ports:
+      - "7000:7000"
+    environment:
+      - FLASK_APP=app.py # No tocar
+      - FLASK_RUN_HOST=0.0.0.0 # No tocar
+      - DATABASE_HOST=172.20.10.3 # IP de la base de datos
+      - DATABASE_USER=cola # Usuario de la base de datos
+      - DATABASE_PASSWORD=sabritas # ContraseÃ±a de la base de datos
+      - DATABASE_DB=cola # Nombre de la base de datos
+    volumes:
+      - /copias:/app/copias # no tocar
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+
